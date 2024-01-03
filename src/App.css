@@ -1,3 +1,13 @@
+/* ---- Custom Colour Scheme ---- */
+:root {
+  --background: #FAFAFA;
+  --accents: #F8F2EC;
+  --blue: #CEEBE8;
+  --pink: #FAC9C9;
+  --text: #574240;
+  --grey: rgba(255, 255, 255, 0.5);
+}
+
 /* ---- Custom Fonts ---- */
 @font-face {
   font-family: Quicksand;
@@ -25,6 +35,7 @@
   font-weight: 700;
 } 
 
+/* ---- App CSS --- */
 .App {
   text-align: center;
 }
@@ -44,8 +55,8 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-  background-color: #121212 !important;
-  color: #fff !important;
+  background-color: var(--accents) !important;
+  color: var(--text) !important;
   font-family: 'Quicksand', sans-serif !important;
 }
 
@@ -82,15 +93,119 @@ input:focus, textarea:focus, select:focus {
 	}
 }
 
+/* ---- Logo CSS ---- */
+.logo{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100px;
+  width:100px;
+  border-radius: 50%;
+}
+
+/* ---- Recipe CSS ---- */
+.container {
+  width:50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  height: 300px;
+  margin: 1.5rem;
+  background: linear-gradient(to left, var(--blue),var(--pink));
+  box-shadow: 0 7px 12px var(--blue);
+  box-sizing:border-box;
+  border-radius: 8px;
+  overflow: auto;
+  position: relative;
+}
+.card img{
+  width:100;
+}
+.card .info{
+  color: white;
+  text-align: center;
+}
+
+.card .info h2{
+  margin: 0;
+  font-weight: 900;
+  margin-top: 15px;
+  font-size:30px;
+
+}
+
+.card .info p{
+  margin:0;
+  font-size: 17px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.card:before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: 0.2s all;
+}
+
+.card:hover::before{
+  height: 100%;
+  background: linear-gradient(to left, var(--blue),var(--pink));
+}
+
+.card:hover{
+  background: linear-gradient(to left, var(--blue),var(--pink));
+}
+
+.card .recipe{
+  position: absolute;
+  top:0;
+  left: 0;
+  text-align: center;
+  padding:0.5rem 1rem;
+  display: none;
+  transition: 0.2s all;
+}
+
+.card:hover .recipe{
+  display: block;
+}
+
+.recipe h2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+.recipe ul{
+  list-style-position: inside;
+}
+.recipe img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---- NavBar CSS ---- */
 nav.navbar {
   padding: 18px 0;
   text-align: right;
-  position: fixed;
+  position: relative;
   width: 100%;
   top: 0;
   z-index: 9999;
-  transition:  0.32s ease-in-out;
+  transition: 0.32s ease-in-out;
 }
 
 .social-icon {
@@ -100,22 +215,21 @@ nav.navbar {
 .social-icon a {
     width: 42px;
     height: 42px;
-    /* background: rgba(217, 217, 217, 0.1); */
-    background: rgb(110,63,170);
+    background: var(--accents);
     display: inline-flex;
     border-radius: 50%;
     margin-right: 6px;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--grey);
 }
 .social-icon a::before {
     content: "";
     width: 42px;
     height: 42px;
     position: absolute;
-    background-color: #ffffff;
+    background-color:var(--blue);
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;
@@ -123,7 +237,7 @@ nav.navbar {
 .social-icon a:hover::before {
     transform: scale(1);
 }
-.social-icon a img {
+.social-icon img {
 	width: 40%;
 	z-index: 1;
 	transition: 0.3s ease-in-out;
