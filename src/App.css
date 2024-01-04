@@ -173,6 +173,7 @@ input:focus, textarea:focus, select:focus {
   padding:0.5rem 1rem;
   display: none;
   transition: 0.2s all;
+  list-style-position: inside;
 }
 
 .card:hover .recipe{
@@ -185,9 +186,6 @@ input:focus, textarea:focus, select:focus {
   text-decoration: underline;
 }
 
-.recipe ul{
-  list-style-position: inside;
-}
 .recipe img{
   width: 100px;
   height: 100px;

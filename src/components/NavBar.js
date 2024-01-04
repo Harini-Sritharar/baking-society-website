@@ -3,10 +3,14 @@ import social1 from "../assets/img/email.png"
 import social2 from "../assets/img/insta.png"
 import social3 from "../assets/img/whatsapp.png"
 import social4 from "../assets/img/website.png"
+import logo from '../assets/img/logo.png';
 
-export const NavBar = () => {
+const NavBar = () => {
     return (
         <Navbar>
+        <div className = "logo">
+            <img src = {logo} alt = "logo"></img>
+          </div>
             <Container>
                 <p></p>
                   {/* Social Icons */}
@@ -30,3 +34,4 @@ export const NavBar = () => {
         </Navbar>
     )
 }
+export default NavBar;
