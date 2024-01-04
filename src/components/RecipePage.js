@@ -1,5 +1,5 @@
 import React from "react";
-import myimage from '../assets/img/logo.png'
+import RecipeCard from './RecipeCard'
 
 /* Database */
 import { db } from '../firebase.config';
@@ -12,8 +12,8 @@ const RecipePage = () => {
       title:"",
       author:"",
       time:"",
-      ingredients:[],
-      steps:[]
+      ingredients:[""],
+      steps:[""]
     })
     const [popupActive,setPopupActive] = useState(false)
   /* Reference to the recipes collection */
@@ -33,7 +33,6 @@ const RecipePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     // checking that all fields are filled out, and the form is valid
     if (
       !form.title.trim() ||
@@ -42,19 +41,24 @@ const RecipePage = () => {
       form.ingredients.length === 0 ||
       form.steps.length === 0
     ) {
-      alert("Please fill out all fields")
+      alert("One or more fields are empty! Please fill out all fields before submitting.")
       return
     }
+    alert("Recipe submitted! Thank you for your contribution.")
     addDoc(recipesCollectionRef,form)
 
+    resetForm()
+    setPopupActive(false)
+  }
+
+  const resetForm = () => {
     setForm({
       title:"",
       author:"",
       time:"",
-      ingredients:[],
-      steps:[]
+      ingredients:[""],
+      steps:[""]
     })
-    setPopupActive(false)
   }
 
   const handleIngredient = (e,i) => {
@@ -88,42 +92,25 @@ const RecipePage = () => {
         <div className="heading">
             <h1>Welcome to the Imperial Baking Society Website!</h1>
         </div>
-        <button onClick={()=>setPopupActive(!popupActive)}>Add Recipe</button>
+        <button class = "add" onClick={() => setPopupActive(!popupActive)}>Add Recipe</button>
         <div className="container">
         <div className='recipes'>
-            {recipes.map((recipe,i) => (
-                <div className="card">
-                <img src={myimage} alt="recipe"></img>
-                <div className="info">
-                    <h2>{recipe.title}</h2> 
-                    <h3> {recipe.time}</h3>
-                    <p>-{recipe.author}</p>
-                </div>
-                <div className="recipe">
-                    <h2>Ingredients</h2>
-                    <ul>
-                        {recipe.ingredients.map((ingredient,i) => (
-                            <li key={i}>{ingredient}</li>
-                        ))}
-                    </ul>
-                    <h2>Steps</h2>
-                    <ol>
-                        {recipe.steps.map((step,i) => (
-                          <li key={i}>{step}</li>
-                        ))}
-                    </ol>
-                </div>
-                
-            </div>
+            {recipes.map((recipe) => (
+              <RecipeCard recipe={recipe}/>
         ))}
         </div>
         
         {popupActive && 
         <div className="popup">
           <div className="popup-inner">
-            <h2> Add a new recipe </h2>
+            <h2> Submit your recipe! </h2>
+            <button type ="button" class ="cancel" 
+            onClick={() => {
+            resetForm()
+            setPopupActive(false)
+            }}>
+            X</button>
             <form onSubmit={handleSubmit}>
-
               <div className="form-group">
                 <label>Title</label>
                 <input type="text"
@@ -149,32 +136,34 @@ const RecipePage = () => {
 
               <div className="form-group">
                 <label>Ingredients</label>
+                <button type="button" onClick={incrementIngredientCnt}>+</button>
                 {
                 form.ingredients.map((ingredient,i) => (
                   <input type="text"
+                  placeholder="Enter an ingredient and press + to add more"
                   key = {i}
                   value = {ingredient} 
                   onChange={e => handleIngredient(e,i)}/>
                 ))
                 }
-                <button type="button" onClick={incrementIngredientCnt}>Add Ingredient</button>
               </div>
 
               <div className="form-group">
                 <label>Steps</label>
+                <button type="button" onClick={incrementStepCnt}>+</button>
                 {
                 form.steps.map((step,s) => (
                   <input type="text"
+                  placeholder="Enter a step and press + to add more"
+
                   key = {s}
                   value = {step} 
                   onChange={e => handleSteps(e,s)}/>
                 ))
                 }
-                <button type="button" onClick={incrementStepCnt}>Add Step</button>
               </div>
               <div className="buttons">
-                <button type="submit">Submit Recipe</button>
-                <button type ="button" onClick={()=>setPopupActive(false)}>Cancel</button>
+                <button type="submit" class = "submit">Submit</button>
                 </div>
             </form>
           </div>

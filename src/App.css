@@ -3,34 +3,37 @@
   --background: #FAFAFA;
   --accents: #F8F2EC;
   --blue: #CEEBE8;
+  --blueAccent : #3adbd6;
   --pink: #FAC9C9;
   --text: #574240;
   --grey: rgba(255, 255, 255, 0.5);
+  --red: #FF0000;
+  --white: #FFFFFF;
 }
 
 /* ---- Custom Fonts ---- */
 @font-face {
-  font-family: Quicksand;
+  font-family: QuicksandBold;
   src: url('./assets/fonts/quicksand/Quicksand-Bold.otf');
   font-weight: 700;
 }
 @font-face {
-  font-family: Quicksand;
+  font-family: QuicksandItalic;
   src: url('./assets/fonts/quicksand/Quicksand-Italic.otf');
   font-weight: 700;
 }
 @font-face {
-  font-family: Quicksand;
+  font-family: QuicksandRegular;
   src: url('./assets/fonts/quicksand/Quicksand-Regular.otf');
   font-weight: 700;
 }
 @font-face {
-  font-family: Quicksand;
+  font-family: QuicksandLight;
   src: url('./assets/fonts/quicksand/Quicksand-Light.otf');
   font-weight: 700;
 }
 @font-face {
-  font-family: Quicksand;
+  font-family: QuicksandDash;
   src: url('./assets/fonts/quicksand/Quicksand_Dash.otf');
   font-weight: 700;
 } 
@@ -57,7 +60,7 @@ body {
   position: relative;
   background-color: var(--accents) !important;
   color: var(--text) !important;
-  font-family: 'Quicksand', sans-serif !important;
+  font-family: 'QuicksandRegular', sans-serif !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -126,32 +129,96 @@ input:focus, textarea:focus, select:focus {
   max-width: 480px;
   overflow: auto;
   max-height: calc(100vh - 4rem);
-}
-.form-group {
-  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.form-group:last-of-type {
-  margin-bottom: 0;
+.popup-inner h2{
+  text-decoration-line: underline;
+  font-family: 'QuicksandBold', sans-serif !important;
+  padding-bottom: 1rem;
+  padding-right: 0px;
+  display: inline-block;
 }
 
-input, textarea {
+input {
   display: block;
   width: 100%;
   padding: 0.5rem;
   resize: vertical;
   max-height: 200px;
   margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;;
+  margin-right: 10px;
 }
 
 .form-group button {
+  display: inline-block;
   margin-top: 1rem;
+  border-radius: 50px;
+  height: 20px;
+  width: 20px;
+  background-color: var(--accents);
+  border: 1px solid var(--blue);
+  color: var(--text);
 }
+
+button.submit{
+  display: inline-block;
+  border: none;
+  height: 25px;
+  width:50px;
+  color: var(--text);
+  border-radius: 40px;
+  background-color: var(--blueAccent);
+  text-align: center;
+  box-shadow: 0 6px 20px -5px var(--grey);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+button.add{
+  display: inline-block;
+  border: none;
+  height: 25px;
+  /* width:50px; */
+  color: var(--text);
+  border-radius: 40px;
+  background-color: var(--blue);
+  text-align: center;
+  box-shadow: 0 6px 20px -5px var(--grey);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+button.submit:hover{
+  background-color: var(--blue);
+  transition: 0.2s ease-in-out;
+}
+
+button.add:hover{
+  background-color: var(--blue);
+  transition: 0.2s ease-in-out;
+}
+.popup-inner button.cancel {
+  top:-10px;
+  right: -100px;
+  position: relative;
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+  background-color: var(--red);
+  border: 1px solid var(--pink);
+  color: var(--text);
+}
+
 
 /* ---- Recipe CSS ---- */
 .container {
@@ -164,7 +231,7 @@ input, textarea {
 
 .card {
   width: 200px;
-  height: 300px;
+  height: 350px;
   margin: 1.5rem;
   background: linear-gradient(to left, var(--blue),var(--pink));
   box-shadow: 0 7px 12px var(--blue);
@@ -185,13 +252,12 @@ input, textarea {
   margin: 0;
   font-weight: 900;
   margin-top: 15px;
-  font-size:30px;
-
+  font: size 1vw;;
 }
 
 .card .info p{
   margin:0;
-  font-size: 17px;
+  font: size 0.5vw;
   letter-spacing: 2px;
   margin-top: 10px;
 }
@@ -265,7 +331,8 @@ nav.navbar {
 
 .social-icon {
     display: inline-block;
-    margin-left: 14px;
+    right:5px;
+    position: absolute;
 }
 .social-icon a {
     width: 42px;
@@ -284,7 +351,7 @@ nav.navbar {
     width: 42px;
     height: 42px;
     position: absolute;
-    background-color:var(--blue);
+    background-color:var(--white);
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;

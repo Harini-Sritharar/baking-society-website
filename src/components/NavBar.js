@@ -12,7 +12,7 @@ const NavBar = () => {
             <img src = {logo} alt = "logo"></img>
           </div>
             <Container>
-                <p></p>
+            
                   {/* Social Icons */}
                   <span className="navbar-text">
                     <div className="social-icon">
